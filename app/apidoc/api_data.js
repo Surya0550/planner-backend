@@ -1,0 +1,621 @@
+define({ "api": [
+  {
+    "type": "get",
+    "url": "/api/v1/users/send/email",
+    "title": "Send a mail for the given email.",
+    "version": "0.0.1",
+    "group": "add",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>The email of the user to which the mail should be sent is passed as a query parameter</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{ \n       accepted: [ 'something@gmail.com' ],\n       rejected: [],\n       envelopeTime: 705,\n       messageTime: 825,\n       messageSize: 328,\n       response: '250 2.0.0 OK  1567694803 s2sm2053088pjq.0 - gsmtp',\n       envelope:\n       { from: 'somebody@gmail.com',\n           to: [ 'something@gmail.com' ] },\n       messageId: '<42991792-6f76-2179-f106-0f89e870c2fe@gmail.com>'\n       }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{ \n        Error: Invalid login: 535-5.7.8\n\n        code: 'EAUTH',\n        response: '535-5.7.8 ,\n        responseCode: 535,\n        command: 'AUTH PLAIN' \n       }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/user.js",
+    "groupTitle": "add",
+    "name": "GetApiV1UsersSendEmail"
+  },
+  {
+    "type": "post",
+    "url": "/api/v1/users/event",
+    "title": "Create an Event for the user.",
+    "version": "0.0.1",
+    "group": "add",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>The userId of the user to which this event is to be created is passed as a body parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "userEvents",
+            "description": "<p>The array of events passed as a body parameter</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": " {\n            _id: \"5d6fef9e938066079cb140d0\"\n            userEvents: [\n                {\n                    \"_id\": \"5d6fef9e938066079cb140d1\",\n                    \"purpose\": \"Sample Purpose 1\",\n                    \"place\": \"Hyderabad\",\n                    \"date\": \"September 12, 2019\",\n                    \"title\": \"Surya Event 1\",\n                    \"id\": \"Af62Uhj0R\"\n                }\n                \n            ]\n            \"userId\": \"XicTV0oqR\",\n            \"__v\": 0\n\t    \t\t\n\t    }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Failed To Create Event\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/user.js",
+    "groupTitle": "add",
+    "name": "PostApiV1UsersEvent"
+  },
+  {
+    "type": "post",
+    "url": "/api/v1/users/event/add",
+    "title": "Post an Event for the user.",
+    "version": "0.0.1",
+    "group": "add",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>The userId of the user to which this event is to be attached is passed as a body parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "title",
+            "description": "<p>The title of the event passed as a body parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "date",
+            "description": "<p>The date of the event in format: &quot;September 10, 2019&quot; passed as a body parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "place",
+            "description": "<p>The place of the event passed as a body parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "purpose",
+            "description": "<p>The purpose of the event passed as a body parameter</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"Event Details Added\",\n\t    \"status\": 200,\n\t    \"data\": \n\t\t\t    {\n                    \"n\": 1,\n                    \"nModified\": 1,\n                    \"ok\": 1\n\t\t\t\t}\n\t    \t\t\n\t    }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Failed To Add Event\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/user.js",
+    "groupTitle": "add",
+    "name": "PostApiV1UsersEventAdd"
+  },
+  {
+    "group": "add",
+    "version": "1.0.0",
+    "type": "post",
+    "url": "/api/v1/users/login",
+    "title": "api for user login.",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email of the user. (body params) (required)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "password",
+            "description": "<p>password of the user. (body params) (required)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "myResponse",
+            "description": "<p>shows error status, message, http status code, result.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": " {\n    \"error\": false,\n    \"message\": \"Login Successful\",\n    \"status\": 200,\n    \"data\": {\n        \"authToken\": \"eyJhbGciOiJIUertyuiopojhgfdwertyuVCJ9.MCwiZXhwIjoxNTIwNDI29tIiwibGFzdE5hbWUiE4In19.hAR744xIY9K53JWm1rQ2mc\",\n        \"userDetails\": {\n        \"mobileNumber\": 2234435524,\n        \"email\": \"someone@mail.com\",\n        \"lastName\": \"S\",\n        \"firstName\": \"Surya\",\n        \"userId\": \"-E9zxTYA8\"\n        }\n    }\n\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Failed To Find User Details\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/user.js",
+    "groupTitle": "add",
+    "name": "PostApiV1UsersLogin"
+  },
+  {
+    "group": "add",
+    "version": "1.0.0",
+    "type": "post",
+    "url": "/api/v1/users/logout",
+    "title": "api for user logout.",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>To authenticate. (body params) (required)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "myResponse",
+            "description": "<p>shows error status, message, http status code, result.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"error\": false,\n    \"message\": \"Logged out Successfully\",\n    \"status\": 200,\n    \"data\": null\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"error occured : 'error message'\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/user.js",
+    "groupTitle": "add",
+    "name": "PostApiV1UsersLogout"
+  },
+  {
+    "type": "post",
+    "url": "/api/v1/users/signup",
+    "title": "signup for the user.",
+    "version": "0.0.1",
+    "group": "add",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "firstName",
+            "description": "<p>The firstName of the user passed as a body parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "lastName",
+            "description": "<p>The lastName of the user passed as a body parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>The email of the user passed as a body parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "countryCode",
+            "description": "<p>The countryCode of the user passed as a body parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "mobileNumber",
+            "description": "<p>The mobileNumber of the user passed as a body parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>The password of the user passed as a body parameter</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n           \"error\": false,\n           \"message\": \"User created\",\n           \"status\": 200,\n           \"data\": {\n               \"__v\": 0,\n               \"_id\": \"5d714ecfbf93a63d88479071\",\n               \"admin\": 0,\n               \"createdOn\": \"2019-09-05T18:07:11.000Z\",\n               \"mobileNumber\": 7052678980,\n               \"email\": \"something@gmail.com\",\n               \"lastName\": \"Ss\",\n               \"firstName\": \"Suryas\",\n               \"userId\": \"H19sIDnlB\"\n           }\n       }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Failed To Create User\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/user.js",
+    "groupTitle": "add",
+    "name": "PostApiV1UsersSignup"
+  },
+  {
+    "type": "put",
+    "url": "/api/v1/users/event/delete/:id",
+    "title": "delete an event for the user.",
+    "version": "0.0.1",
+    "group": "delete",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The eventId of the event passed as a params parameter</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n           \"error\": false,\n           \"message\": \"Deleted the SingleEvent successfully\",\n           \"status\": 200,\n           \"data\": {\n               \"n\": 1,\n               \"nModified\": 1,\n               \"ok\": 1\n           }\n       }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Failed to delete SingleEvent details\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/user.js",
+    "groupTitle": "delete",
+    "name": "PutApiV1UsersEventDeleteId"
+  },
+  {
+    "type": "put",
+    "url": "/api/v1/users/event/edit/:id",
+    "title": "edit an event for the user.",
+    "version": "0.0.1",
+    "group": "edit",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The eventId of the event passed as a params parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "title",
+            "description": "<p>The title of the event passed as a body parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "date",
+            "description": "<p>The date of the event in format: &quot;September 10, 2019&quot; passed as a body parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "place",
+            "description": "<p>The place of the event passed as a body parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "purpose",
+            "description": "<p>The purpose of the event passed as a body parameter</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n           \"error\": false,\n           \"message\": \"SingleEvent details edited\",\n           \"status\": 200,\n           \"data\": {\n               \"n\": 1,\n               \"nModified\": 1,\n               \"ok\": 1\n           }\n       }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Failed to edit SingleEvent details\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/user.js",
+    "groupTitle": "edit",
+    "name": "PutApiV1UsersEventEditId"
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/users/email",
+    "title": "Get email for the user.",
+    "version": "0.0.1",
+    "group": "read",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>The userId of the user passed as a query parameter</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n           \"admin\": 0,\n           \"createdOn\": \"2019-09-03T05:16:31.000Z\",\n           \"mobileNumber\": 54521515421,\n           \"email\": \"something@gmail.com\",\n           \"lastName\": \"S\",\n           \"firstName\": \"Sai Surya Teja\",\n           \"userId\": \"yCg3kwZUS\"\n       }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Failed To Get EmailId\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/user.js",
+    "groupTitle": "read",
+    "name": "GetApiV1UsersEmail"
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/users/event/detail",
+    "title": "Get the Event details for a user.",
+    "version": "0.0.1",
+    "group": "read",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>The userId of the user passed as a query parameter</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": " {\n            _id: \"5d6fef9e938066079cb140d0\"\n            userEvents: [\n                {\n                    \"_id\": \"5d6fef9e938066079cb140d1\",\n                    \"purpose\": \"Sample Purpose 1\",\n                    \"place\": \"Hyderabad\",\n                    \"date\": \"September 12, 2019\",\n                    \"title\": \"Surya Event 1\",\n                    \"id\": \"Af62Uhj0R\"\n                }\n                \n            ]\n            \"userId\": \"XicTV0oqR\",\n            \"__v\": 0\n\t    \t\t\n\t    }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Failed To Get Event Details\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/user.js",
+    "groupTitle": "read",
+    "name": "GetApiV1UsersEventDetail"
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/users/event/single/detail",
+    "title": "Get an Event detail for the user.",
+    "version": "0.0.1",
+    "group": "read",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The id of the event passed as a query parameter</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n           \"id\": \"-rFM-Ofi9\",\n           \"title\": \"Created through Add\",\n           \"date\": \"September 29, 2019\",\n           \"place\": \"Sample Place\",\n           \"purpose\": \"Sample Purpose\",\n           \"_id\": \"5d7140b8bf93a63d8847906f\"\n       }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Failed To Get Single Event Detail\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/user.js",
+    "groupTitle": "read",
+    "name": "GetApiV1UsersEventSingleDetail"
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/users/view/all/normal",
+    "title": "Get all Normal Users",
+    "version": "0.0.1",
+    "group": "read",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token for authentication.(Send authToken as query parameter, body parameter or as a header)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": " {\n\t    \"error\": false,\n\t    \"message\": \"All Normal User Details Found\",\n\t    \"status\": 200,\n\t    \"data\": [\n\t\t\t\t\t{\n                        \"admin\": 0,\n                        \"createdOn\": \"2019-09-03T05:05:47.000Z\",\n                        \"mobileNumber\": 4695258541,\n                        \"email\": \"something@gmail.com\",\n                        \"password\": \"$2a$10$2p4rtxyD4eV/8e2GjEkqzujcMFW4QO5y0WKC5zRrhIQico7Tmx6HC\",\n                        \"lastName\": \"V\",\n                        \"firstName\": \"Hari\",\n                        \"userId\": \"tP8Bbn6_n\"\n\t\t\t\t\t}\n\t    \t\t]\n\t    }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Failed To Find Normal User Details\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/user.js",
+    "groupTitle": "read",
+    "name": "GetApiV1UsersViewAllNormal"
+  }
+] });
